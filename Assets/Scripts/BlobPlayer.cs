@@ -44,6 +44,12 @@ public class BlobPlayer : MonoBehaviour {
 
 	void Update() {
 
+		//ice powers activate - whoosh all around us
+		if (Input.GetMouseButtonDown (0)) {
+			ActivateIcePowers ();
+			//attach the waterfall script to the waterfall and then destroy if nearby.
+		}
+
         if (Input.GetAxis("Horizontal") != 0) {
             xSpeed += (Input.GetAxis("Horizontal") * friction);
             xSpeed = Mathf.Clamp(xSpeed, -speed, speed);
@@ -78,7 +84,10 @@ public class BlobPlayer : MonoBehaviour {
         //Transform from local to world space
 		movement = transform.TransformDirection(movement);
 		charController.Move(movement);
+
+
 	}
+		
 
     public void CheckGround(Vector3 origin) {
         // Out hit point from our cast(s)
@@ -155,7 +164,21 @@ public class BlobPlayer : MonoBehaviour {
             Gizmos.DrawLine(startPoint, endPoint);
         }
     }
+	void ActivateIcePowers(){
 
+		Destroy (GameObject.Find ("FX_WaterfallBigFoam"));
+		Destroy (GameObject.Find ("FX_WaterFallBigSplashes"));
+
+
+// Hides the water from waterfall.
+//		GameObject waterfalling = GameObject.Find ("FX_WaterfallBigFoam");
+//		GameObject waterfallSplash = GameObject.Find ("FX_WaterFallBigSplashes");
+//		ParticleRenderer fallingRenderer = waterfalling.GetComponent<ParticleRenderer> ();
+//		ParticleRenderer splashRenderer = waterfallSplash.GetComponent<ParticleRenderer> ();
+//		fallingRenderer.enabled = false;
+//		splashRenderer.enabled = false;
+
+	}
 
 
 }
